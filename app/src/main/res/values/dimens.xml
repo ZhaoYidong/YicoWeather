@@ -1,0 +1,18 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin_half">8dp</dimen>
+    <dimen name="activity_vertical_margin_half">8dp</dimen>
+    <dimen name="line_normal">1dp</dimen>
+
+    <!--main head textSize start-->
+    <dimen name="text_size_weather_head_city">30sp</dimen>
+    <dimen name="text_size_weather_head_cond">16sp</dimen>
+    <dimen name="text_size_weather_head_tmp">50sp</dimen>
+    <!--main head textSize end-->
+
+
+    <dimen name="text_size_normal">16sp</dimen>
+
+</resources>

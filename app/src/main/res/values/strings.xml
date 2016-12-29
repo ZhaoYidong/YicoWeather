@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">YicoWeather</string>
+    <string name="celsius_symbol">℃</string>
+</resources>

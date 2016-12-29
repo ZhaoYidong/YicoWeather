@@ -32,9 +32,27 @@ proguard/
 # Android Studio captures folder
 captures/
 
-# Intellij
+# Eclipse project files
+.classpath
+.project
+
+# Intellij project files
 *.iml
-.idea/workspace.xml
+*.ipr
+*.iws
+.idea/
+
+# OSX files
+.DS_Store
 
 # Keystore files
 *.jks
+
+.externalNativeBuild
+
+
+
+
+
+
+
