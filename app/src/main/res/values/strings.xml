@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">YicoWeather</string>
+    <string name="app_name">i 天气</string>
     <string name="celsius_symbol">℃</string>
+    <string name="placeholder_short"> - </string>
+    <string name="placeholder_medium"> - - </string>
+    <string name="placeholder_long"> - - - </string>
 </resources>

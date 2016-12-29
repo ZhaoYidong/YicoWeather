@@ -71,6 +71,9 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (mHourlyForecast == null || mHourlyForecast.getHourly_forecast() == null) {
+            return;
+        }
         holder.tvDate.setText(cutTime(mHourlyForecast.getHourly_forecast().get(position).getDate()));
         downloadIcon(holder, position);
         holder.tvTmp.setText(mHourlyForecast.getHourly_forecast().get(position).getTmp());
@@ -78,6 +81,9 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
     @Override
     public int getItemCount() {
+        if (mHourlyForecast == null || mHourlyForecast.getHourly_forecast() == null) {
+            return 7;
+        }
         return mHourlyForecast.getHourly_forecast().size();
     }
 

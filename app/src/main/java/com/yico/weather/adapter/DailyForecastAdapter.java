@@ -75,18 +75,23 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (mDailyForecast == null || mDailyForecast.getDaily_forecast() == null) {
+            return;
+        }
         DailyForecastBean dailyForecastBean = mDailyForecast.getDaily_forecast().get(position);
         holder.tvDate.setText(dailyForecastBean.getDate());
-        downloadIcon(holder,position);
+        downloadIcon(holder, position);
         holder.tvTmpMax.setText(dailyForecastBean.getTmp().getMax());
         holder.tvTmpMin.setText(dailyForecastBean.getTmp().getMin());
     }
 
     @Override
     public int getItemCount() {
+        if (mDailyForecast == null || mDailyForecast.getDaily_forecast() == null) {
+            return 3;
+        }
         return mDailyForecast.getDaily_forecast().size();
     }
-
 
 
     private void downloadIcon(final ViewHolder holder, int position) {

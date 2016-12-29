@@ -11,7 +11,8 @@
         style="@style/text_view_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical"
+        android:text="@string/placeholder_long"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,6 +26,7 @@
 
         <ImageView
             android:id="@+id/iv_weather_icon_d"
+            style="@style/image_view_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"/>
@@ -32,6 +34,7 @@
 
         <ImageView
             android:id="@+id/iv_weather_icon_n"
+            style="@style/image_view_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"/>
@@ -45,6 +48,7 @@
     <TextView
         android:id="@+id/tv_tmp_max"
         style="@style/text_view_normal"
+        android:text="@string/placeholder_short"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"/>
@@ -53,9 +57,10 @@
         android:id="@+id/tv_tmp_min"
         style="@style/text_view_normal"
         android:layout_width="wrap_content"
+        android:text="@string/placeholder_short"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/line_normal"
         android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/line_normal"
         android:textColor="@color/gray"/>
 
 </LinearLayout>

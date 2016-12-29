@@ -12,8 +12,16 @@
     <!--普通textView Style-->
     <!--字体：白色-->
     <style name="text_view_normal">
+        <item name="android:text">@string/placeholder_medium</item>
         <item name="android:textSize">@dimen/text_size_normal</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <!--普通imageView Style-->
+    <!--默认图片：机器人 -->
+    <style name="image_view_normal">
+        <item name="android:src">@mipmap/ic_launcher</item>
     </style>
 
 </resources>

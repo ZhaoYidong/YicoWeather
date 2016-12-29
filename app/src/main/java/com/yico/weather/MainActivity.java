@@ -94,6 +94,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onFailure(Call<HeWeather5> call, Throwable t) {
                 Logger.t(TAG).e(t.getMessage());
+                setData2RecyclerViewHourly(null);
+                setData2RecyclerViewDaily(null);
             }
         });
     }
@@ -109,7 +111,7 @@ public class MainActivity extends BaseActivity {
         mRecyclerViewHourly.setAdapter(mHourlyAdapter);
     }
 
-    protected void setData2RecyclerViewDaily(DailyForecast dailyForecast){
+    protected void setData2RecyclerViewDaily(DailyForecast dailyForecast) {
         mDailyAdapter = new DailyForecastAdapter(MainActivity.this, dailyForecast);
         mRecyclerViewDaily.setAdapter(mDailyAdapter);
     }
