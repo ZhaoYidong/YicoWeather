@@ -12,8 +12,10 @@ import com.yico.weather.model.HeWeather5;
 import com.yico.weather.model.HourlyForecast;
 import com.yico.weather.model.Now;
 import com.yico.weather.model.basic.DailyForecast;
+import com.yico.weather.model.basic.DailyForecastBean;
 import com.yico.weather.net.ApiService;
 import com.yico.weather.net.NetUtils;
+import com.yico.weather.view.ItemMiddleWeatherInfo;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +38,16 @@ public class MainActivity extends BaseActivity {
     //item_recycler_view_daily_forecast.xml
     private RecyclerView mRecyclerViewDaily;
     private DailyForecastAdapter mDailyAdapter;
+
+    //middle_weather_information.xml
+    private ItemMiddleWeatherInfo imwiSunrise;
+    private ItemMiddleWeatherInfo imwiSunset;
+    private ItemMiddleWeatherInfo imwiPop;
+    private ItemMiddleWeatherInfo imwiPcpn;
+    private ItemMiddleWeatherInfo imwiSpd;
+    private ItemMiddleWeatherInfo imwiHum;
+    private ItemMiddleWeatherInfo imwiPres;
+    private ItemMiddleWeatherInfo imwiVis;
 
 
     @Override
@@ -63,6 +75,15 @@ public class MainActivity extends BaseActivity {
         LinearLayoutManager linearLayoutManager0 = new LinearLayoutManager(MainActivity.this);
         linearLayoutManager0.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerViewDaily.setLayoutManager(linearLayoutManager0);
+
+        imwiSunrise = mFindViewById(R.id.imwi_sunrise);
+        imwiSunset = mFindViewById(R.id.imwi_sunset);
+        imwiPop = mFindViewById(R.id.imwi_pop);
+        imwiPcpn = mFindViewById(R.id.imwi_pcpn);
+        imwiSpd = mFindViewById(R.id.imwi_spd);
+        imwiHum = mFindViewById(R.id.imwi_hum);
+        imwiPres = mFindViewById(R.id.imwi_pres);
+        imwiVis = mFindViewById(R.id.imwi_vis);
     }
 
     protected void getData() {
@@ -89,6 +110,8 @@ public class MainActivity extends BaseActivity {
                 dailyForecast.setBasic(response.body().getBasic());
                 dailyForecast.setDaily_forecast(response.body().getDaily_forecast());
                 setData2RecyclerViewDaily(dailyForecast);
+
+                setData2MidWeatherInfo(response.body().getDaily_forecast().get(0));
             }
 
             @Override
@@ -114,6 +137,40 @@ public class MainActivity extends BaseActivity {
     protected void setData2RecyclerViewDaily(DailyForecast dailyForecast) {
         mDailyAdapter = new DailyForecastAdapter(MainActivity.this, dailyForecast);
         mRecyclerViewDaily.setAdapter(mDailyAdapter);
+    }
+
+    protected void setData2MidWeatherInfo(DailyForecastBean bean) {
+        imwiSunrise.setKey("日出：");
+        imwiSunrise.setValue(bean.getAstro().getSr());
+
+        imwiSunset.setKey("日落：");
+        imwiSunset.setValue(bean.getAstro().getSs());
+
+        if (Integer.parseInt(bean.getTmp().getMin()) < 0) {
+            imwiPop.setKey("降雪概率：");
+        } else {
+            imwiPop.setKey("降水概率：");
+        }
+        imwiPop.setValue(bean.getPop() + "%");
+
+        if (Integer.parseInt(bean.getTmp().getMin()) < 0) {
+            imwiPcpn.setKey("降雪量：");
+        } else {
+            imwiPcpn.setKey("降水量：");
+        }
+        imwiPcpn.setValue(bean.getPcpn() + "毫米");
+
+        imwiSpd.setKey("风速：");
+        imwiSpd.setValue(bean.getWind().getDir() + " " + "每小时" + bean.getWind().getSpd() + "千米");
+
+        imwiHum.setKey("相对湿度：");
+        imwiHum.setValue(bean.getHum() + "%");
+
+        imwiPres.setKey("气压：");
+        imwiPres.setValue(bean.getPres() + "百帕");
+
+        imwiVis.setKey("能见度：");
+        imwiVis.setValue(bean.getVis() + "千米");
     }
 
 

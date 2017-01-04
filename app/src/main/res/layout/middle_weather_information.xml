@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/layout_margin_half"
+    android:layout_marginTop="@dimen/layout_margin_half"
+    android:orientation="vertical">
+
+    <!--日出-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_sunrise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!--日落-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_sunset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!--降水概率-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_pop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_half"/>
+
+    <!--降水量-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_pcpn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_half"/>
+
+
+    <!--风速-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_spd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_half"/>
+
+    <!--湿度-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_hum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <!--气压-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_pres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_half"/>
+
+    <!--能见度-->
+    <com.yico.weather.view.ItemMiddleWeatherInfo
+        android:id="@+id/imwi_vis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+</LinearLayout>

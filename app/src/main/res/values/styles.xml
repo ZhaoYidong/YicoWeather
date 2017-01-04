@@ -19,7 +19,7 @@
 
 
     <!--普通imageView Style-->
-    <!--默认图片：机器人 -->
+    <!--默认图片：icon -->
     <style name="image_view_normal">
         <item name="android:src">@mipmap/ic_launcher</item>
     </style>

@@ -1,7 +1,5 @@
 package com.yico.weather.net;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.yico.weather.model.HeWeather5;
@@ -39,7 +37,6 @@ public class WeatherResponseConverter<T> implements Converter<ResponseBody, T> {
 
     @Override
     public T convert(ResponseBody responseBody) throws IOException {
-        Log.i("yico", "WeatherResponseConverter");
 
         if (mType instanceof HeWeather5) {
             Logger.i("mType instanceof HeWeather5");
