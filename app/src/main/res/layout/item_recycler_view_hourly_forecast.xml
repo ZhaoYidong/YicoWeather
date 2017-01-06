@@ -17,9 +17,7 @@
 
     <ImageView
         android:id="@+id/iv_weather_icon"
-        style="@style/image_view_normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/image_view_weather_icon"
         android:layout_gravity="center_horizontal"/>
 
     <TextView

@@ -49,7 +49,6 @@ public class MainActivity extends BaseActivity {
     private ItemMiddleWeatherInfo imwiPres;
     private ItemMiddleWeatherInfo imwiVis;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,7 +160,7 @@ public class MainActivity extends BaseActivity {
         imwiPcpn.setValue(bean.getPcpn() + "毫米");
 
         imwiSpd.setKey("风速：");
-        imwiSpd.setValue(bean.getWind().getDir() + " " + "每小时" + bean.getWind().getSpd() + "千米");
+        imwiSpd.setValue(bean.getWind().getDir() + " " + bean.getWind().getSpd() + "km/h");
 
         imwiHum.setKey("相对湿度：");
         imwiHum.setValue(bean.getHum() + "%");
@@ -172,6 +171,5 @@ public class MainActivity extends BaseActivity {
         imwiVis.setKey("能见度：");
         imwiVis.setValue(bean.getVis() + "千米");
     }
-
 
 }

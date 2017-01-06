@@ -20,8 +20,10 @@
 
     <!--普通imageView Style-->
     <!--默认图片：icon -->
-    <style name="image_view_normal">
+    <style name="image_view_weather_icon">
         <item name="android:src">@mipmap/ic_launcher</item>
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
     </style>
 
 </resources>

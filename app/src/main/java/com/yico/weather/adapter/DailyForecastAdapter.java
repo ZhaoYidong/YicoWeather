@@ -16,6 +16,7 @@ import com.yico.weather.model.basic.DailyForecast;
 import com.yico.weather.model.basic.DailyForecastBean;
 import com.yico.weather.net.ApiService;
 import com.yico.weather.net.NetUtils;
+import com.yico.weather.utils.DateUtils;
 import com.yico.weather.utils.Utils;
 
 import java.io.InputStream;
@@ -79,7 +80,7 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
             return;
         }
         DailyForecastBean dailyForecastBean = mDailyForecast.getDaily_forecast().get(position);
-        holder.tvDate.setText(dailyForecastBean.getDate());
+        holder.tvDate.setText(DateUtils.getWeekOfDate(dailyForecastBean.getDate(), 1024));
         downloadIcon(holder, position);
         holder.tvTmpMax.setText(dailyForecastBean.getTmp().getMax());
         holder.tvTmpMin.setText(dailyForecastBean.getTmp().getMin());

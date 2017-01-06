@@ -30,8 +30,7 @@
     <com.yico.weather.view.ItemMiddleWeatherInfo
         android:id="@+id/imwi_pcpn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_margin_half"/>
+        android:layout_height="wrap_content"/>
 
 
     <!--风速-->

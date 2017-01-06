@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
+    android:layout_marginTop="@dimen/layout_margin_triple"
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/layout_margin_double"
         android:textSize="@dimen/text_size_weather_head_city"/>
 
     <TextView
