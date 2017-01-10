@@ -1,6 +1,8 @@
 package com.yico.weather;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -16,15 +18,19 @@ import com.yico.weather.model.basic.DailyForecastBean;
 import com.yico.weather.net.ApiService;
 import com.yico.weather.net.NetUtils;
 import com.yico.weather.view.ItemMiddleWeatherInfo;
+import com.yico.weather.view.MySwipeRefreshLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "MainActivity";
+
+
+    private MySwipeRefreshLayout swipeLayout;
 
     //head_weather_new.xml
     private TextView tvCity;
@@ -60,6 +66,9 @@ public class MainActivity extends BaseActivity {
     }
 
     protected void initView() {
+        swipeLayout = mFindViewById(R.id.swipe_layout);
+        swipeLayout.setOnRefreshListener(this);
+
         tvCity = mFindViewById(R.id.tv_city);
         tvCond = mFindViewById(R.id.tv_cond);
         tvTmp = mFindViewById(R.id.tv_tmp);
@@ -171,5 +180,26 @@ public class MainActivity extends BaseActivity {
         imwiVis.setKey("能见度：");
         imwiVis.setValue(bean.getVis() + "千米");
     }
+
+    @Override
+    public void onRefresh() {
+        mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
+    }
+
+    private static final int REFRESH_COMPLETE = 1024;
+
+    private Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case REFRESH_COMPLETE:
+                    getData();
+                    mHourlyAdapter.notifyDataSetChanged();
+                    mDailyAdapter.notifyDataSetChanged();
+                    swipeLayout.setRefreshing(false);
+                    break;
+            }
+        }
+    };
+
 
 }
