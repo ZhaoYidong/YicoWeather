@@ -2,7 +2,7 @@ package com.yico.weather;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -25,10 +25,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
-
 
     private MySwipeRefreshLayout swipeLayout;
 
@@ -66,8 +65,11 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     }
 
     protected void initView() {
+        //设置下拉刷新
         swipeLayout = mFindViewById(R.id.swipe_layout);
-        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorSchemeResources(android.R.color.holo_green_light, android.R.color.holo_blue_bright,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
         tvCity = mFindViewById(R.id.tv_city);
         tvCond = mFindViewById(R.id.tv_cond);
@@ -181,11 +183,6 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         imwiVis.setValue(bean.getVis() + "千米");
     }
 
-    @Override
-    public void onRefresh() {
-        mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
-    }
-
     private static final int REFRESH_COMPLETE = 1024;
 
     private Handler mHandler = new Handler() {
@@ -198,6 +195,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                     swipeLayout.setRefreshing(false);
                     break;
             }
+        }
+    };
+
+    OnRefreshListener mOnRefreshListener = new OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 0);
         }
     };
 

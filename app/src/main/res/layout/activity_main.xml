@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <com.yico.weather.view.MySwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +13,6 @@
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
         android:orientation="vertical">
-
 
         <include layout="@layout/header_weather_now"/>
 
@@ -67,6 +65,6 @@
 
         <include layout="@layout/footer_tools"/>
 
-
     </LinearLayout>
+
 </com.yico.weather.view.MySwipeRefreshLayout>

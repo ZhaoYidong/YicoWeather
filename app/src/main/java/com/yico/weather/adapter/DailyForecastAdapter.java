@@ -79,6 +79,11 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
         if (mDailyForecast == null || mDailyForecast.getDaily_forecast() == null) {
             return;
         }
+        //制造假数据
+        if (position >= mDailyForecast.getDaily_forecast().size()) {
+            position = mDailyForecast.getDaily_forecast().size() - 1;
+        }
+
         DailyForecastBean dailyForecastBean = mDailyForecast.getDaily_forecast().get(position);
         holder.tvDate.setText(DateUtils.getWeekOfDate(dailyForecastBean.getDate(), 1024));
         downloadIcon(holder, position);
@@ -91,7 +96,7 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
         if (mDailyForecast == null || mDailyForecast.getDaily_forecast() == null) {
             return 3;
         }
-        return mDailyForecast.getDaily_forecast().size();
+        return mDailyForecast.getDaily_forecast().size() * 2;
     }
 
 

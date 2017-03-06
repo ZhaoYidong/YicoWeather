@@ -16,7 +16,7 @@
     <!--main head textSize start-->
     <dimen name="text_size_weather_head_city">32sp</dimen>
     <dimen name="text_size_weather_head_cond">16sp</dimen>
-    <dimen name="text_size_weather_head_tmp">72sp</dimen>
+    <dimen name="text_size_weather_head_tmp">96sp</dimen>
     <!--main head textSize end-->
 
 
