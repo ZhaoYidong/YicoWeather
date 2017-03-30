@@ -49,10 +49,11 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int intWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-        if (1024 == type)
+        if (1024 == type) {
             return weekDaysName[intWeek];
-        else
+        } else {
             return intWeek + "";
+        }
     }
 
 
