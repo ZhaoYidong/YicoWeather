@@ -9,4 +9,10 @@
         <attr name="android:fadingEdgeLength" />
     </declare-styleable>
 
+    <!-- Defines the custom XML attributes supported for a FlowLayout -->
+    <declare-styleable name="FlowLayout">
+        <attr name="lineSpacing" format="dimension" />
+        <attr name="maxLine" format="integer" />
+    </declare-styleable>
+
 </resources>

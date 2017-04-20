@@ -58,8 +58,7 @@
     <com.yico.weather.view.ItemMiddleWeatherInfo
         android:id="@+id/imwi_vis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

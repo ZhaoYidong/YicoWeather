@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar"/>
+
+    <include layout="@layout/line_horizontal"/>
+
+    <com.yico.weather.view.draggridview.DragGridView
+        android:id="@+id/dgv_citys"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:cacheColorHint="@null"
+        android:horizontalSpacing="@dimen/line_normal_3"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="4"
+        android:verticalSpacing="@dimen/line_normal_3">
+
+    </com.yico.weather.view.draggridview.DragGridView>
+
+    <include layout="@layout/line_horizontal"/>
+
+    <com.yico.weather.view.FlowLayout
+        android:id="@+id/fl_citys"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_double"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dp_2"
+        android:paddingTop="@dimen/dp_2">
+
+    </com.yico.weather.view.FlowLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:layout_weight="1"
+            android:text="add"/>
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="clear"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

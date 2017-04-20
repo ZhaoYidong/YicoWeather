@@ -1,10 +1,14 @@
 package com.yico.weather;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
@@ -18,21 +22,26 @@ import com.yico.weather.model.basic.DailyForecastBean;
 import com.yico.weather.net.ApiService;
 import com.yico.weather.net.NetUtils;
 import com.yico.weather.view.ItemMiddleWeatherInfo;
-import com.yico.weather.view.MySwipeRefreshLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
 
-    private MySwipeRefreshLayout swipeLayout;
+    public static final int ACTIVITY_RESULT_CODE_4_SELECT_CITY = 1;
+
+    private CollapsingToolbarLayout mToolbarLayout;
+
+    private String theCity = "北京";
+
+    private SwipeRefreshLayout srflAll;
 
     //head_weather_new.xml
-    private TextView tvCity;
+    //private TextView tvCity;
     private TextView tvCond;
     private TextView tvTmp;
 
@@ -65,13 +74,19 @@ public class MainActivity extends BaseActivity {
     }
 
     protected void initView() {
-        //设置下拉刷新
-        swipeLayout = mFindViewById(R.id.swipe_layout);
-        swipeLayout.setColorSchemeResources(android.R.color.holo_green_light, android.R.color.holo_blue_bright,
-                android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
-        tvCity = mFindViewById(R.id.tv_city);
+        //设置title，Toolbar
+        mToolbarLayout = mFindViewById(R.id.tbl_title);
+        mToolbarLayout.setTitle(theCity);
+
+        //设置下拉刷新
+        srflAll = mFindViewById(R.id.srfl_all);
+        srflAll.setColorSchemeResources(android.R.color.holo_green_light, android.R.color.holo_blue_bright,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        srflAll.setOnRefreshListener(mOnRefreshListener);
+
+
+        //tvCity = mFindViewById(R.id.tv_city);
         tvCond = mFindViewById(R.id.tv_cond);
         tvTmp = mFindViewById(R.id.tv_tmp);
 
@@ -101,7 +116,7 @@ public class MainActivity extends BaseActivity {
 
         ApiService service = retrofit.create(ApiService.class);
 
-        Call<HeWeather5> weather = service.getWeather("北京", NetUtils.KEY);
+        Call<HeWeather5> weather = service.getWeather(theCity, NetUtils.KEY);
 
         weather.enqueue(new Callback<HeWeather5>() {
             @Override
@@ -134,7 +149,7 @@ public class MainActivity extends BaseActivity {
     }
 
     protected void setData2HeadView(Now now) {
-        tvCity.setText(now.getBasic().getCity());
+        //tvCity.setText(now.getBasic().getCity());
         tvCond.setText(now.getNow().getCond().getTxt());
         tvTmp.setText(now.getNow().getTmp());
     }
@@ -192,7 +207,7 @@ public class MainActivity extends BaseActivity {
                     getData();
                     mHourlyAdapter.notifyDataSetChanged();
                     mDailyAdapter.notifyDataSetChanged();
-                    swipeLayout.setRefreshing(false);
+                    srflAll.setRefreshing(false);
                     break;
             }
         }
@@ -204,6 +219,38 @@ public class MainActivity extends BaseActivity {
             mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 0);
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Logger.i("IN onActivityResult");
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case ACTIVITY_RESULT_CODE_4_SELECT_CITY:
+                theCity = data.getStringExtra("city");
+                mToolbarLayout.setTitle(theCity);
+                getData();
+                mHourlyAdapter.notifyDataSetChanged();
+                mDailyAdapter.notifyDataSetChanged();
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_footer:
+                Intent intent = new Intent(this, SelectCityActivity.class);
+                startActivityForResult(intent, ACTIVITY_RESULT_CODE_4_SELECT_CITY);
+                break;
+
+            case R.id.tv_tmp:
+                break;
+
+            default:
+
+                break;
+        }
+    }
 
 
 }
